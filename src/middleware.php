@@ -40,7 +40,9 @@ $allowed_origins = [
     'http://192.168.*.*',     // Allow all IPs in 192.168.x.x range
     'http://172.16.*.*',      // Allow all IPs in 172.16.x.x range
     'http://10.*.*.*',        // Allow all IPs in 10.x.x.x range
-    'http://172.23.*.*'
+    'http://172.23.*.*',
+    'https://deployment.d1zcgaudis8kbz.amplifyapp.com',
+
 ];
 
 if (empty($_SERVER['HTTP_ORIGIN'])) {
