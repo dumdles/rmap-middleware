@@ -1,8 +1,8 @@
 <?php
 // api/create_customer.php
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../middleware.php';
+require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/src/middleware.php';
 
 // Set the response type to JSON
 header('Content-Type: application/json');

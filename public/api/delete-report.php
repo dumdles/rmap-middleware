@@ -1,7 +1,7 @@
 <?php
 // delete-report.php - API endpoint for soft-deleting a report and its inspections
-require_once __DIR__ . '/../middleware.php';
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/src/middleware.php';
+require_once __DIR__ . '/src/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the JSON input
