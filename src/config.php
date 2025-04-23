@@ -3,8 +3,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 0); // Set to 0 in production to hide errors
 
-require_once __DIR__ . '/config_secret.php';
-
 $servername = getenv('DB_HOST');
 $dbusername = getenv('DB_USER');
 $password = getenv('DB_PASS');
