@@ -1,0 +1,22 @@
+# environment files
+.env
+.env.local
+.env.*.local
+
+# PHP artifacts
+/vendor/
+/composer.lock
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# logs
+*.log
+
+# build / cache
+node_modules/
+dist/
+.cache/
