@@ -1,7 +1,7 @@
 <?php
 // config.php
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // Set to 0 in production to hide errors
+ini_set('display_errors', 1); // Set to 0 in production to hide errors
 
 $servername = getenv('DB_HOST');
 $dbusername = getenv('DB_USER');
