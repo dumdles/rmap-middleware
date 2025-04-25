@@ -1,8 +1,8 @@
 <?php
 // /api/login.php - API endpoint for login
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/src/middleware.php';
-require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
