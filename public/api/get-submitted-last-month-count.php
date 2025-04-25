@@ -1,7 +1,7 @@
 <?php
 // get-submitted-last-month-count.php
-require_once __DIR__ . '/src/middleware.php';
-require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 header('Content-Type: application/json');
 
@@ -33,4 +33,3 @@ try {
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
-?>

@@ -2,8 +2,8 @@
 // get-contractors.php
 
 // Include the database configuration file
-require_once __DIR__ . '/src/middleware.php';
-require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 try {
     // Connect to the database

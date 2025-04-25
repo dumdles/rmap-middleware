@@ -1,8 +1,8 @@
 <?php
 // session_status.php - API to check if a user is logged in
 
-require_once __DIR__ . '/src/middleware.php';
-require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 
 // If authenticated, respond with user details

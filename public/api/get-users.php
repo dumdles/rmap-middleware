@@ -1,8 +1,8 @@
 <?php
 // get-users.php
 
-require_once __DIR__ . '/src/middleware.php';
-require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 header('Content-Type: application/json');
 
@@ -44,4 +44,3 @@ try {
         'message' => 'Error fetching users: ' . $e->getMessage()
     ]);
 }
-?>

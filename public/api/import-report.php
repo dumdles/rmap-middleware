@@ -1,8 +1,8 @@
 <?php
 // import-report.php
 
-require_once __DIR__ . '/src/middleware.php';
-require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 header('Content-Type: application/json');
 
@@ -176,4 +176,3 @@ try {
     http_response_code(500); // Internal Server Error
     echo json_encode(['success' => false, 'message' => 'Error importing report: ' . $e->getMessage()]);
 }
-

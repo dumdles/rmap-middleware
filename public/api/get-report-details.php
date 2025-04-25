@@ -1,7 +1,7 @@
 <?php
 // get-report-details.php
-require_once __DIR__ . '/src/middleware.php';
-require_once __DIR__ . '/src/config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);
@@ -41,7 +41,7 @@ try {
         JOIN contractors con ON c.contractor = con.contractorID
         WHERE rl.report_id = ?
     ");
-    
+
     $stmt->bind_param("i", $reportId);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -56,7 +56,7 @@ try {
     }
 
     $report = $result->fetch_assoc();
-    
+
     // Fetch assigned users separately
     $userStmt = $db->prepare("
         SELECT 
@@ -67,16 +67,16 @@ try {
         JOIN login_users lu ON ra.user_id = lu.id
         WHERE ra.report_id = ?
     ");
-    
+
     $userStmt->bind_param("i", $reportId);
     $userStmt->execute();
     $userResult = $userStmt->get_result();
-    
+
     $assignedUsers = [];
     while ($user = $userResult->fetch_assoc()) {
         $assignedUsers[] = $user;
     }
-    
+
     // Add assigned users to report object
     $report['assigned_users'] = $assignedUsers;
 
