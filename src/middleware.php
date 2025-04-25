@@ -49,8 +49,6 @@ if (empty($_SERVER['HTTP_ORIGIN'])) {
     $_SERVER['HTTP_ORIGIN'] = 'http://localhost:3000'; // Default fallback
 }
 
-error_log("Incoming Origin: " . $origin);
-
 // Function to check if origin matches pattern (supports wildcards)
 function matchesPattern($origin, $pattern)
 {
