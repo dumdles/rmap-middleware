@@ -71,39 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $isFlutterApp = isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Dart') !== false;
             error_log("isFlutterApp: " . ($isFlutterApp ? 'true' : 'false'));
 
-            if ($isFlutterApp) {
-                // Return the token in the response
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Login successful',
-                    'token' => $jwt,
-                    'user' => [
-                        'userId' => $user['ID'],
-                        'username' => $user['User_Name'],
-                        'permissions' => $user['Permissions']
-                    ]
-                ]);
-            } else { // Set HTTP-only cookie for web clients
-                setcookie('token', $jwt, [
-                    'expires' => time() + 3600,
-                    'path' => '/',
-                    // 'domain' => 'localhost', // Set to your domain if needed
-                    'secure' => false, // Set to true if using HTTPS
-                    'httponly' => true,
-                    'samesite' => 'Lax',
-                ]);
-
-                // Return success without token
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Login successful',
-                    'user' => [
-                        'userId' => $user['ID'],
-                        'username' => $user['User_Name'],
-                        'permissions' => $user['Permissions']
-                    ]
-                ]);
-            }
+            echo json_encode([
+                'success' => true,
+                'message' => 'Login successful',
+                'token' => $jwt,
+                'user' => [
+                    'userId' => $user['ID'],
+                    'username' => $user['User_Name'],
+                    'permissions' => $user['Permissions']
+                ]
+            ]);
         } else {
             // Invalid credentials
             http_response_code(401);
