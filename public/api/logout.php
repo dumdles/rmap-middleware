@@ -2,7 +2,7 @@
 // logout.php - API endpoint for logout
 session_start(); // Start the session to access session variables
 
-require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../middleware.php';
 
 // Handle preflight (OPTIONS) request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
