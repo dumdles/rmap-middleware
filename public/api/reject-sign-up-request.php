@@ -15,6 +15,7 @@ if (!isset($_SESSION['permissions']) || $_SESSION['permissions'] != 1) {
 
 $input = json_decode(file_get_contents('php://input'), true);
 $userId = $input['userId'] ?? null;
+$stmt = $conn->prepare("DELETE FROM sign_up_requests WHERE ID = ?");
 
 if (!$userId) {
     http_response_code(400);
