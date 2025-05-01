@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("sssss", $username, $fullName, $email, $phoneNumber, $passwordHash);
         if ($stmt->execute()) {
             // Success
-            http_response_code(201);
+            http_response_code(200);
             echo json_encode(['success' => true, 'message' => 'User created successfully']);
             log_action(
                 "signup",
