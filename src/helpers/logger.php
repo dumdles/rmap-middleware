@@ -3,6 +3,11 @@
 include_once __DIR__ . '/../config.php';
 include_once __DIR__ . '/../middleware.php';
 
+$logDir = __DIR__ . '/../logs';
+if (! is_dir($logDir)) {
+    mkdir($logDir, 0775, true);
+}
+
 function log_action($action, $user_id = null, $details = "")
 {
     $username = $_SESSION['username'] ?? 'Guest';
