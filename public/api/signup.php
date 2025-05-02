@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Basic validation
     if (empty($fullName) || empty($username) || empty($email) || empty($phoneNumber) || empty($userPassword)) {
         http_response_code(400);
-        echo json_encode(['message' => 'All fields are required']);
+        echo json_encode(['success' => false, 'message' => 'All fields are required']);
         exit();
     }
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
-        echo json_encode(['message' => 'Invalid email format']);
+        echo json_encode(['success' => false, 'message' => 'Invalid email format']);
         exit();
     }
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result->num_rows > 0) {
             http_response_code(400);
-            echo json_encode(['message' => 'Username or email already exists']);
+            echo json_encode(['success' => false, 'message' => 'Username or email already exists']);
             exit();
         }
 
