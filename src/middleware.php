@@ -98,7 +98,8 @@ $public_endpoints = [
     '/api/login.php',
     '/api/signup.php',
     '/RMAP/api/login.php',
-    '/RMAP/api/signup.php'
+    '/RMAP/api/signup.php',
+    '/signup.php'
 ];
 
 // Function to check if current endpoint is public
