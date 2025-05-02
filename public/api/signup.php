@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordHash = password_hash($userPassword, PASSWORD_DEFAULT);
 
         // Insert user into the sign_up_users table
-        $stmt = $db->prepare("INSERT INTO sign_up_users (User_Name, Name, email, phone_number, Password, signup_date) VALUES (?, ?, ?, ?, ?, NOW())");
+        $stmt = $db->prepare("INSERT INTO sign_up_users (User_Name, Name, email, phone_number, Password, signup_date) VALUES (?, ?, ?, ?, ?, DATE_FORMAT(UTC_TIMESTAMP(), '%Y-%m-%dT%H:%i:%sZ'))");
         if (!$stmt) {
             throw new Exception("Prepare statement failed: " . $db->error);
         }
