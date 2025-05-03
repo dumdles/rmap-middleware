@@ -25,7 +25,7 @@ $payload = [
     'aud' => 'localhost',
     'iat' => time(),
     'nbf' => time(),
-    'exp' => time() + 120, // for testing, set to 2 minutes
+    'exp' => time() + 3600,
     'data' => $decoded->data
 ];
 $newJwt = JWT::encode($payload, JWT_SECRET_KEY, 'HS256');
