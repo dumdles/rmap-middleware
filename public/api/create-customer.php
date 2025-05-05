@@ -1,11 +1,16 @@
 <?php
-// api/create_customer.php
+// api/create-customer.php
 
 require_once __DIR__ . '/../../src/config.php';
 require_once __DIR__ . '/../../src/middleware.php';
 
 // Set the response type to JSON
 header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // Already handled by middleware, but adding as a safety net
+    exit;
+}
 
 // Ensure the request method is POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -104,7 +109,7 @@ try {
 
     // Bind parameters (s = string, etc.)
     $stmt->bind_param(
-        "ssssss",
+        "ssissi",
         $customer_name,
         $customer_address,
         $contractorID,
@@ -112,6 +117,7 @@ try {
         $contact_email,
         $contact_number
     );
+    
 
     // Execute the statement
     if ($stmt->execute()) {
