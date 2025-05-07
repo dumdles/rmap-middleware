@@ -1,5 +1,16 @@
 {
+    "name": "your-project/rmap-middleware",
+    "description": "Report Management Application Middleware",
     "require": {
+        "php": ">=7.4",
         "firebase/php-jwt": "^6.11"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "chmod -R 755 public/"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

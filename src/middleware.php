@@ -42,6 +42,7 @@ $allowed_origins = [
     'http://10.*.*.*',        // Allow all IPs in 10.x.x.x range
     'http://172.23.*.*',
     'https://deployment.d1zcgaudis8kbz.amplifyapp.com',
+    'https://rmap-middleware-env.eba-vcfjvxse.ap-southeast-1.elasticbeanstalk.com',
 
 ];
 
