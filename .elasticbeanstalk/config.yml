@@ -2,10 +2,16 @@ branch-defaults:
   deployment:
     environment: rmap-middleware-env
     group_suffix: null
+  main:
+    environment: rmap-middleware-env
+environment-defaults:
+  rmap-middleware-env:
+    branch: null
+    repository: null
 global:
   application_name: rmap-middleware
   branch: null
-  default_ec2_keyname: rmap-linux
+  default_ec2_keyname: rmap_key(linux)
   default_platform: PHP 8.4 running on 64bit Amazon Linux 2023
   default_region: ap-southeast-1
   include_git_submodules: true
