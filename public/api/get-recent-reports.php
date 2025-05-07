@@ -1,8 +1,8 @@
 <?php
 // get-recent-reports.php
 
-require_once __DIR__ . '/../middleware.php';
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 try {
     $db = getDBconnection();

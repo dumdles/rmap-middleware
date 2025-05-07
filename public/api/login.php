@@ -1,8 +1,8 @@
 <?php
 // /api/login.php - API endpoint for login
-require_once __DIR__ . '/../middleware.php';
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
@@ -30,7 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    error_log("Login attempt for user: $username");
+    // Check if the account is pending approval
+    $pendingStmt = $db->prepare("SELECT * FROM sign_up_users WHERE User_Name = ?");
+    $pendingStmt->bind_param("s", $username);
+    $pendingStmt->execute();
+    $pendingResult = $pendingStmt->get_result();
+    if ($pendingResult->num_rows > 0) {
+        http_response_code(403);
+        echo json_encode(['message' => 'Account is pending approval']);
+        $pendingStmt->close();
+        exit();
+    }
 
     // Query the database for the user
     $stmt = $db->prepare("SELECT * FROM login_users WHERE User_Name = ?");
@@ -71,39 +81,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $isFlutterApp = isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Dart') !== false;
             error_log("isFlutterApp: " . ($isFlutterApp ? 'true' : 'false'));
 
-            if ($isFlutterApp) {
-                // Return the token in the response
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Login successful',
-                    'token' => $jwt,
-                    'user' => [
-                        'userId' => $user['ID'],
-                        'username' => $user['User_Name'],
-                        'permissions' => $user['Permissions']
-                    ]
-                ]);
-            } else { // Set HTTP-only cookie for web clients
-                setcookie('token', $jwt, [
-                    'expires' => time() + 3600,
-                    'path' => '/',
-                    // 'domain' => 'localhost', // Set to your domain if needed
-                    'secure' => false, // Set to true if using HTTPS
-                    'httponly' => true,
-                    'samesite' => 'Lax',
-                ]);
-
-                // Return success without token
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Login successful',
-                    'user' => [
-                        'userId' => $user['ID'],
-                        'username' => $user['User_Name'],
-                        'permissions' => $user['Permissions']
-                    ]
-                ]);
-            }
+            echo json_encode([
+                'success' => true,
+                'message' => 'Login successful',
+                'token' => $jwt,
+                'user' => [
+                    'userId' => $user['ID'],
+                    'username' => $user['User_Name'],
+                    'permissions' => $user['Permissions']
+                ]
+            ]);
         } else {
             // Invalid credentials
             http_response_code(401);

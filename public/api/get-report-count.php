@@ -1,7 +1,8 @@
 <?php
 // get-report-count.php
 
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 // Set the response header to application/json
 header('Content-Type: application/json');

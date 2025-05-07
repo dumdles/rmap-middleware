@@ -1,8 +1,8 @@
 <?php
 // api/get-sign-up-requests.php
 
-require_once __DIR__ . '/../middleware.php';
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 header('Content-Type: application/json');
 
@@ -15,7 +15,7 @@ try {
 
     $signUpRequests = [];
     while ($row = $result->fetch_assoc()) {
-        $signupDate = $row['signup_date'];
+        $signupDate = (new DateTime($row['signup_date'], new DateTimeZone('UTC')))->format('c'); // 'c' gives ISO 8601 with 'T' and 'Z'
 
         // Create a DateTime object from the signup date
         $dateTime = new DateTime($signupDate, new DateTimeZone('Asia/Singapore')); // Replace with your server's time zone if different

@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/helpers/logger.php';
 
 // Include Composer autoload
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/config.php';
 
 use \Firebase\JWT\JWT;
@@ -40,14 +40,15 @@ $allowed_origins = [
     'http://192.168.*.*',     // Allow all IPs in 192.168.x.x range
     'http://172.16.*.*',      // Allow all IPs in 172.16.x.x range
     'http://10.*.*.*',        // Allow all IPs in 10.x.x.x range
-    'http://172.23.*.*'
+    'http://172.23.*.*',
+    'https://deployment.d1zcgaudis8kbz.amplifyapp.com',
+    'https://rmap-middleware-env.eba-vcfjvxse.ap-southeast-1.elasticbeanstalk.com',
+
 ];
 
 if (empty($_SERVER['HTTP_ORIGIN'])) {
     $_SERVER['HTTP_ORIGIN'] = 'http://localhost:3000'; // Default fallback
 }
-
-error_log("Incoming Origin: " . $origin);
 
 // Function to check if origin matches pattern (supports wildcards)
 function matchesPattern($origin, $pattern)

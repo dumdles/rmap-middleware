@@ -1,8 +1,8 @@
 <?php
 // api/change-password.php
 
-require_once __DIR__ . '/../middleware.php';
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 header('Content-Type: application/json');
 
@@ -14,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Check if the user is logged in
-if (!isset($_SESSION['userID'])) {
+if (!isset($_SESSION['user_id'])) {
     http_response_code(401); // Unauthorized
     echo json_encode(['success' => false, 'message' => 'Unauthorized. Please log in.']);
     exit();
 }
 
-$userId = $_SESSION['userID'];
+$userId = $_SESSION['user_id'];
 
 // Get the JSON input
 $input = json_decode(file_get_contents('php://input'), true);

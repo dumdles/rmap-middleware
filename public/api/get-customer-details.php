@@ -1,10 +1,8 @@
 <?php
 // get-customer-details.php
 
-require_once __DIR__ . '/../config.php';
-
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405); // Method not allowed

@@ -1,8 +1,8 @@
 <?php
 // signup.php - API endpoint for sign-up
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../middleware.php';
+require_once __DIR__ . '/../../src/config.php';
+require_once __DIR__ . '/../../src/middleware.php';
 
 header('Content-Type: application/json');
 
@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Basic validation
     if (empty($fullName) || empty($username) || empty($email) || empty($phoneNumber) || empty($userPassword)) {
         http_response_code(400);
-        echo json_encode(['message' => 'All fields are required']);
+        echo json_encode(['success' => false, 'message' => 'All fields are required']);
         exit();
     }
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
-        echo json_encode(['message' => 'Invalid email format']);
+        echo json_encode(['success' => false, 'message' => 'Invalid email format']);
         exit();
     }
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result->num_rows > 0) {
             http_response_code(400);
-            echo json_encode(['message' => 'Username or email already exists']);
+            echo json_encode(['success' => false, 'message' => 'Username or email already exists']);
             exit();
         }
 
@@ -51,14 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordHash = password_hash($userPassword, PASSWORD_DEFAULT);
 
         // Insert user into the sign_up_users table
-        $stmt = $db->prepare("INSERT INTO sign_up_users (User_Name, Name, email, phone_number, Password, signup_date) VALUES (?, ?, ?, ?, ?, NOW())");
+        $stmt = $db->prepare("INSERT INTO sign_up_users (User_Name, Name, email, phone_number, Password, signup_date) VALUES (?, ?, ?, ?, ?, DATE_FORMAT(UTC_TIMESTAMP(), '%Y-%m-%dT%H:%i:%sZ'))");
         if (!$stmt) {
             throw new Exception("Prepare statement failed: " . $db->error);
         }
         $stmt->bind_param("sssss", $username, $fullName, $email, $phoneNumber, $passwordHash);
         if ($stmt->execute()) {
             // Success
-            http_response_code(201);
+            http_response_code(200);
             echo json_encode(['success' => true, 'message' => 'User created successfully']);
             log_action(
                 "signup",

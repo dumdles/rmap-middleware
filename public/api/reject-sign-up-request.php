@@ -1,8 +1,8 @@
 <?php
 // reject-sign-up-request.php
 
-require_once __DIR__ . '/../middleware.php';
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/config.php';
 
 header('Content-Type: application/json');
 
@@ -24,16 +24,20 @@ if (!$userId) {
 
 try {
     $db = getDBconnection();
-
-    // Delete the user from sign_up_users
-    $deleteStmt = $db->prepare("DELETE FROM sign_up_users WHERE ID = ?");
-    $deleteStmt->bind_param('i', $userId);
+    
+    // First, fetch the user info before deleting
+    $stmt = $db->prepare("SELECT User_Name FROM sign_up_users WHERE ID = ?");
+    $stmt->bind_param('i', $userId);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
     $username = $user['User_Name'] ?? 'Unknown';
     $stmt->close();
-
+    
+    // Now delete the user
+    $deleteStmt = $db->prepare("DELETE FROM sign_up_users WHERE ID = ?");
+    $deleteStmt->bind_param('i', $userId);
+    
     if ($deleteStmt->execute()) {
         if ($deleteStmt->affected_rows > 0) {
             echo json_encode(['success' => true, 'message' => 'User rejected and removed from sign-up requests']);
@@ -50,12 +54,12 @@ try {
         http_response_code(500);
         echo json_encode(['success' => false, 'message' => 'Failed to delete user from sign-up requests']);
     }
-
-    // Close statements and connection
+    
+    // Close statement and connection
     $deleteStmt->close();
     $db->close();
 } catch (Exception $e) {
-    $db->rollback();
+    // No need for rollback as there's no transaction
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
     log_action(

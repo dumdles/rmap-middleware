@@ -1,7 +1,9 @@
+<!-- tests if authentication is working -->
+
 <?php
 error_log(print_r(getallheaders(), true));
 
-require_once __DIR__ . '/../middleware.php';
+require_once __DIR__ . '/../../src/middleware.php';
 
 header('Content-Type: application/json');
 
