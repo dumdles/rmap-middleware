@@ -103,11 +103,26 @@ $public_endpoints = [
 ];
 
 // Function to check if current endpoint is public
-function is_public_endpoint()
-{
+function is_public_endpoint() {
     global $public_endpoints;
     $current_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    return in_array($current_uri, $public_endpoints);
+    
+    // Debug the current URI
+    error_log("Current URI: " . $current_uri);
+    
+    // Check for exact matches
+    if (in_array($current_uri, $public_endpoints)) {
+        return true;
+    }
+    
+    // Check for endpoints regardless of path prefix
+    foreach ($public_endpoints as $endpoint) {
+        if (basename($current_uri) === basename($endpoint)) {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 $admin_endpoints = [
