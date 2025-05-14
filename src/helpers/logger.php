@@ -1,7 +1,7 @@
 <?php
 // helpers/logger.php
 include_once __DIR__ . '/../config.php';
-include_once __DIR__ . '/../middleware.php';
+include_once __DIR__ . '/../index.php';
 
 $logDir = __DIR__ . '/../logs';
 if (! is_dir($logDir)) {

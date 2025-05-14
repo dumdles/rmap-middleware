@@ -1,6 +1,6 @@
 <?php
 // get-report-details.php
-require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/index.php';
 require_once __DIR__ . '/../../src/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

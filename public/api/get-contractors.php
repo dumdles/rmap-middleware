@@ -2,7 +2,7 @@
 // get-contractors.php
 
 // Include the database configuration file
-require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/index.php';
 require_once __DIR__ . '/../../src/config.php';
 
 try {

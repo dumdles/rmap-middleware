@@ -3,7 +3,7 @@
 <?php
 error_log(print_r(getallheaders(), true));
 
-require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/index.php';
 
 header('Content-Type: application/json');
 

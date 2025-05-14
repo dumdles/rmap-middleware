@@ -1,7 +1,7 @@
 <?php
 // get-assigned-reports.php
 
-require_once __DIR__ . '/../../src/middleware.php'; // Handles authentication and sets $_SESSION
+require_once __DIR__ . '/../../src/index.php'; // Handles authentication and sets $_SESSION
 require_once __DIR__ . '/../../src/config.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
 

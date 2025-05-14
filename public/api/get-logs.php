@@ -1,7 +1,7 @@
 <?php
 // get-logs.php - Return user actions logs in JSON
 
-require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/index.php';
 require_once __DIR__ . '/../../src/config.php';
 
 header('Content-Type: application/json');

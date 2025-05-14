@@ -1,7 +1,7 @@
 <?php
 // api/update-report.php - API endpoint to update report details
 
-require_once __DIR__ . '/../../src/middleware.php'; // Include the middleware
+require_once __DIR__ . '/../../src/index.php'; // Include the middleware
 require_once __DIR__ . '/../../src/config.php';
 
 // Set the response type to JSON

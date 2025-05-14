@@ -14,7 +14,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 // Include database and JWT authentication files
 require_once __DIR__ . '/../../src/config.php';
-require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/index.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use \Firebase\JWT\JWT;

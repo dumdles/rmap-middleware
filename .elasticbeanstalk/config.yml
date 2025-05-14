@@ -4,6 +4,7 @@ branch-defaults:
     group_suffix: null
   main:
     environment: rmap-middleware-env
+    group_suffix: null
 environment-defaults:
   rmap-middleware-env:
     branch: null

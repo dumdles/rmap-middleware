@@ -2,7 +2,7 @@
 // refresh-token.php
 
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../../src/middleware.php';
+require_once __DIR__ . '/../../src/index.php';
 require_once __DIR__ . '/../../src/config.php';
 
 use \Firebase\JWT\JWT;
