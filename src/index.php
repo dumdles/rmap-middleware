@@ -45,6 +45,8 @@ $allowed_origins = [
     'https://rmap-middleware-env.eba-vcfjvxse.ap-southeast-1.elasticbeanstalk.com',
     'https://main.d1zcgaudis8kbz.amplifyapp.com',
     'https://d1zcgaudis8kbz.amplifyapp.com',
+    'https://api.ac-tesla.com',
+
 
 
 ];
