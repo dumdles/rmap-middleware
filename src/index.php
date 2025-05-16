@@ -46,9 +46,8 @@ $allowed_origins = [
     'https://main.d1zcgaudis8kbz.amplifyapp.com',
     'https://d1zcgaudis8kbz.amplifyapp.com',
     'https://api.ac-tesla.com',
-
-
-
+    'https://deployment.d3lpr9i16tp6w.amplifyapp.com',
+    'https://www.ac-tesla.com'
 ];
 
 if (empty($_SERVER['HTTP_ORIGIN'])) {
